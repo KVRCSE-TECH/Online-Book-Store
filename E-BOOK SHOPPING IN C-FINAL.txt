@@ -1,0 +1,1343 @@
+#include<stdio.h>    // Standard in-put & out-putfunctions like printf,scanf.
+#include<conio.h>    // clrscr,getch  functions.
+#include<string.h>   // String Library functions like strcmp,strstr,strlen.....etc.
+#include<stdlib.h>   // Standard Library functions like abs,max,exit......etc.
+void title();            // Title of the e-book shopping.
+void login_account();    // Login to your account.
+void create_account();   // Create a new account.
+void customer_details(); // Customers in ebook shopping.
+void all_ebooks();       // Different categories in ebooks.
+void search_books();     // To search a book.
+void payment();          // Cash on delivery & online payment.
+void atm_cards();        // Debit card & Credit card options.
+void down_buy_books();   // Download & Buy a ebook options.
+void engineering_books();// Different Engineering ebooks.
+void cse_books();        // Cse ebooks.
+void ece_books();        // Ece ebooks.
+void civil_books();      // Civil ebooks.
+void mech_books();       // Mech ebooks.
+void eee_books();        // Eee ebooks.
+void children_books();   // Children ebooks.
+void business_books();   // Business ebooks.
+void suggest_books();    // Suggest a book.
+void book_num();         // Book Numbers (1-10).
+void buy_book();         // Buy a Book.
+void down_bar();         // Download Loading Bar.
+void card_num();         // Debit card & Credit cards Details.
+void back_menus();       // Different Back & Main Menus.
+struct user              // Structure Declaration.
+{
+  char uname[10]; // Structure  uname.
+  char pwd[10];   // Structure  pwd.
+}u;
+ char user[20],pwd[20];
+ char books[200][200]={"cprogramming by E.balagur Swamy cost is:350","oop's through c++ by E.balaguru swamy cost is:335","r For Every One by inder,pearson  cost is:500","pythonprogramming by vamsi kurama,pearson cost is:300","datastructures by mark allen weiss cost is:400","javaprogramming by E.balaguru swamy cost is:350 ","softwareengineering by rajib mall cost is:435","computerorganization by carl hamacher cost is:500 ","webtechnologies by uttam K roy cost is:650","computernetworks  by A.forouzan,firouz mosharrf cost is:600"};
+ char name[50],addrs[50],phnum[10],readbook[50],suggest_book[20],name1[20],cardnum[16],month_year[6],cvv[3],date_birth[8],ch;
+ int op1,op2,op3,op4,op5,op6,op7,op8,op9,op10,op11,op12,op13,op14,r1,i=0,j=0,k=0,r2,booknum,bnum,n,ctr=0;
+ FILE*f;
+
+void main()  // main() of program.
+{
+ clrscr();   // Clear the Screen.
+ title();    // Calling of Title.
+ textcolor(MAGENTA);
+ cprintf("|==============================================================================|");
+ textcolor(RED);
+ cprintf("| ABOUT E-BOOK SHOPPING:-                                                      |");
+ textcolor(GREEN);
+ cprintf("|             ELECTRONIC BOOK (e-book) is a book publication made available in |");
+ cprintf("| digital form consisting of text ,images, or both  readable on the flat-panel |");
+ cprintf("| display of computers or other  electronic devices. It is same as online book |");
+ cprintf("| store. This project focuses  attention on designing  efficient and reliable  |");
+ cprintf("| softwar whitch controls the transactions of a book  shop in real world.      |");
+ cprintf("|                                                                              |");
+ textcolor(RED);
+ cprintf("| EXPLORE:-                                                                    |");
+ textcolor(GREEN);
+ cprintf("|        In this project different categories books available like Engineering |");
+ cprintf("| books,Business books & Children books and we have different options Download |");
+ cprintf("| Sample book ,Download a Full book ,Search eBooks, Buy a book, Suggest book.  |");
+ textcolor(RED);
+ cprintf("|                                                                              |");
+ cprintf("|                       ***LOW PRICE GREAT SELECTION***                        |");
+ cprintf("|                                                                              |");
+ textcolor(MAGENTA);
+ cprintf("|==============================================================================|");
+ label1:    // Label Declaration.
+ textcolor(YELLOW);
+ cprintf("\nEnter 1 for go to next page:");
+ scanf("%d",&n);
+ if(n==1)
+ {
+  label3:   // Label Calling.
+  clrscr();
+  title();
+  textcolor(RED);
+  cprintf("1.CREATE ACCOUNT                                                                ");
+  cprintf("2.LOGIN                                                                         ");
+  cprintf("3.CUSTOMERS LIST                                                                ");
+  cprintf("0.EXIT                                                                          ");
+ }
+ else
+ {
+   textcolor(LIGHTRED);
+   cprintf("Enter 1 only.                                                                   ");
+   goto label1;
+ }
+  label2:
+  textcolor(YELLOW);
+  cprintf("Enter your option(1-3):");
+  scanf("%d",&op1);
+switch(op1)    // Switch for Different case.
+{
+ case 1:
+   clrscr();
+   title();
+   create_account();   // Calling function for Create Account.
+   textcolor(RED);
+   cprintf("Your account is successfully created.");
+   delay(2000);       // Delay the next statement with in mensition time.
+   clrscr();
+   title();
+   textcolor(CYAN);
+   cprintf("Now you are login to your account.                                              ");
+   login_account();    // Calling function for Login Account.
+   break;
+ case 2:
+   clrscr();
+   title();
+   login_account();
+   break;
+ case 3:
+   customer_details();  // Calling function for Customer Details.
+   label4:
+   textcolor(CYAN);
+   cprintf("Enter 1 for goto to back menu:");
+   scanf("%d",&n);
+   if(n==1)
+   {
+   goto label3;
+   }
+   else
+   {
+   textcolor(LIGHTBLUE);
+   cprintf("Enter correct option.                                                           ");
+   goto  label4;
+   }
+ case 0:
+   textcolor(MAGENTA);
+   cprintf("Thank you for visiting eBOOK SHOPPING.");
+   delay(3000);
+   exit(0);   // To exit the switch.
+ case 7:
+   f=fopen("user.dat","wb");
+   fclose(f);
+   textcolor(GREEN);
+   cprintf("All users are deleted.");
+   break;
+ default:
+   textcolor(LIGHTCYAN);     // Add colour to the out-put text.
+   cprintf("Invalid option.                                                                 ");
+   cprintf("Enter correct option.                                                           ");
+   goto label2;
+ }
+ getch();     // To get a single character from the keyboard.
+}
+
+
+
+ void title()    // Called function for Title.
+ {
+  textcolor(GREEN);   // Add colour to the out-put text.
+  cprintf("**********************************E-BOOK SHOPPING*******************************");
+  textcolor(LIGHTBLUE);
+  cprintf("                            			   ***************   \t\t\t                         ");
+ }
+
+
+
+
+void create_account()      // Called function for Create Acoount.
+{
+  struct user u;
+    f=fopen("user.dat","ab+");
+    textcolor(MAGENTA);
+    cprintf("Create user name:");
+    scanf("%s",&u.uname);
+    textcolor(MAGENTA);
+    cprintf("Create your password:");
+    scanf("%s",&u.pwd);
+    fwrite(&u,sizeof(struct user),1,f);
+    fclose(f);
+
+}
+
+
+
+void login_account()       // Called function for Login Account.
+ {
+  int ctr=0;
+  char user[10],pwd[20];
+  struct user u;
+  textcolor(MAGENTA);
+  cprintf("Enter user name:");
+  scanf("%s",&user);
+  f=fopen("user.dat","rb+");
+  while( (fread(&u,sizeof(struct user),1,f))==1)
+  {
+  if(strcmp(user,u.uname)==0)  // To check user name correct or not.
+  {
+  ctr=1;
+  textcolor(MAGENTA);
+  cprintf("Enter your password:");
+  scanf("%s",&pwd);
+  if(strcmp(pwd,u.pwd)==0)    // To check password correct or not.
+  {
+  ctr+=2;
+  textcolor(BROWN);
+  cprintf("LOADING...........PLZ WAIT                                                     ");
+  for(i=0;i<=26;i++)
+  {
+  textcolor(LIGHTBLUE);
+  cprintf("%3c",221);
+  delay(200);
+  }
+  textcolor(RED);
+  printf("You are login successfully......                                                ");
+  textcolor(MAGENTA);
+  cprintf("LOADING...........PLZ WAIT                                                     ");
+  delay(2000);
+  clrscr();
+  title();
+  textcolor(GREEN);
+  cprintf("WELCOME TO E-BOOK SHOPPING!                                                     ");
+  all_ebooks();
+  }
+  }
+  }
+  if(ctr==0)
+  {
+  textcolor(MAGENTA);   //Add colour to the out-put text.
+  cprintf("User not exit.                                                                  ");
+  textcolor(CYAN);
+  i++;
+  if(i==3)
+  {
+  textcolor(GREEN);
+  cprintf("SORRYTRYAGAIN");
+  delay(3000);
+  exit(0);
+  }
+  cprintf("PLease enter correct user name.                                                 ");
+  login_account();
+  }
+  if(ctr==1)
+  {
+  textcolor(MAGENTA);   //Add colour to the out-put text
+  cprintf("Incorrect password.                                                             ");
+  textcolor(CYAN);
+  cprintf("PLease enter correct user and password.                                         ");
+  login_account();
+  }
+  fclose(f);
+ }
+
+
+
+void customer_details()       // Called function for Customer Details.
+{
+  int i=1;
+  struct user u;
+  clrscr();
+  title();
+  textcolor(GREEN);
+  cprintf("CUSTOMERS LIST IS:                                                              ");
+  f=fopen("user.dat","ab+");
+  while((fread(&u,sizeof(struct user),1,f))==1)
+  {
+  textcolor(MAGENTA);
+  cprintf("%d.%s   %s",i,u.uname,"INDIA");
+  i++;
+  printf("\n");
+  }
+  fclose(f);      // Close the File  f.
+}
+
+
+
+
+void all_ebooks()       // Called function for All ebooks.
+{
+ textcolor(RED);
+ cprintf("1.SEARCH eBOOKS                                                                 ");
+ textcolor(CYAN);
+ cprintf("DIFFERENT CATEGORIES IN eBOOKS:-                                                ");
+ textcolor(RED);
+ cprintf("2.ENGINEERING BOOKS                                                             ");
+ cprintf("3.BUSINESS BOOKS                                                                ");
+ cprintf("4.CHILDREN BOOKS                                                                ");
+ cprintf("0.EXIT                                                                          ");
+ label5:
+ textcolor(YELLOW);
+ cprintf("Enter your option(1-5):");
+ scanf("%d",&op2);
+switch(op2)
+{
+ case 1:
+   search_books();         // Calling function for Search books.
+   break;
+ case 2:
+   clrscr();
+   title();
+   engineering_books();    // Calling function foe Engineering books.
+   break;
+ case 3:
+   business_books();       // Calling function for Business books.
+   down_buy_books();       // Calling function for Down & Buy books.
+   back_menus();           // Calling function for Back menus.
+   break;
+ case 4:
+   children_books();      // Calling function for Children books.
+   down_buy_books();
+   back_menus();
+   break;
+ case 5:
+   textcolor(MAGENTA);
+   cprintf("Thank you for visiting eBOOK SHOPPING.");
+   delay(3000);
+   exit(0);
+   default:
+   textcolor(LIGHTCYAN);
+   cprintf("Invalid option.                                                                 ");
+   cprintf("Enter a number which category books you want.                                   ");
+   goto label5;
+ }
+}
+
+
+
+
+
+void search_books()        // Called function for Search books.
+{
+ clrscr();
+ title();
+ textcolor(LIGHTGREEN);
+ cprintf("Enter book name without any spaces:");
+ scanf("%s",&readbook);
+ textcolor(LIGHTCYAN);
+ cprintf("Searching.....                                                                  ");
+ for(i=0;i<10;i++)
+ {
+  k=0;
+  if(strstr(books[i],readbook)!='\0')   // To check the Search book  in ebooks or not.
+  {
+  printf("THE BOOHK IS::%d.%s\n",i,books[i]);
+  k++;
+  break;
+  }
+ }
+  if(k==0)
+  {
+  textcolor(LIGHTGREEN);
+  cprintf("Sorry ,the book is not available in ebooks.                                     ");
+  }
+  else
+  {
+  for(i=0;i<=10;i++)
+  {
+  down_buy_books();
+  }
+  }
+  textcolor(RED);
+  cprintf("1.SUGGEST A BOOK                                                                ");
+  cprintf("2.GO TO BACK MENU                                                               ");
+  cprintf("3.EXIT                                                                          ");
+  label6:
+  printf("Enter your option(1-3):");
+  scanf("%d",&op5);
+  switch(op5)
+  {
+  case 1:
+    clrscr();
+    title();
+    label7:
+    textcolor(LIGHTMAGENTA);
+    cprintf("Enter suggest book name without any spaces:");
+    scanf("%s",&suggest_book);
+    for(i=0;suggest_book[i]!='\0';i++)
+    {
+    if((suggest_book[i]>='a' && suggest_book[i]<='z') ||  (suggest_book[i]>='A' && suggest_book[i]<='Z'))
+    {      //To check given string collection of alphaberts or not.
+    textcolor(BROWN);
+    cprintf("Thank you for suggesting.                                                       ");
+    cprintf("I will try to add this book with in 24 Hours.                                   ");
+    }
+    else
+    {
+    textcolor(LIGHTCYAN);
+    cprintf("The book name contains only alphabets.                                          ");
+    goto label7;   //goto re_enter_lastname label.
+    }
+    textcolor(RED);
+    cprintf("1.GO TO BACK MENU                                                               ");
+    cprintf("0.EXIT                                                                          ");
+    label8:
+    textcolor(YELLOW);
+    cprintf("Enter your option((1-2):");
+    scanf("%d",&op6);
+    switch(op6)
+    {
+  case 1:
+    clrscr();
+    title();
+    all_ebooks();
+    break;
+  case 0:
+    textcolor(LIGHTMAGENTA);
+    cprintf("Thank you for visiting eBOOK SHOPPING.");
+    delay(3000);
+    exit(0);
+  default:
+    textcolor(LIGHTCYAN);
+    cprintf("Invalid option");
+    cprintf("Enter correct option.");
+    goto label8;
+    }
+    }
+    break;
+  case 2:
+    clrscr();
+    title();
+    all_ebooks();     //calling function for all branch books.
+    break;
+  case 0:
+    textcolor(LIGHTMAGENTA);
+    cprintf("Thank you for visiting eBOOK SHOPPING.");
+    delay(3000);
+    exit(0);
+  default:
+    printf("Enter a valid option.");
+    goto label6;
+ }
+}
+
+
+
+
+
+void engineering_books()  //Called function for engineering books.
+{
+  textcolor(LIGHTGREEN);
+  cprintf("DIFFERENT ENGINEERING BRANCH BOOKS:-                                            ");
+  textcolor(RED);
+  cprintf("1.CSE BOOKS                                                                     ");
+  cprintf("2.ECE BOOKS                                                                     ");
+  cprintf("3.CIVIL BOOKS                                                                   ");
+  cprintf("4.MECH BOOKS                                                                    ");
+  cprintf("5.EEE BOOKS                                                                     ");
+  cprintf("6.GO TO BACK MENU                                                               ");
+  cprintf("0.EXIT                                                                          ");
+  label9:
+  textcolor(YELLOW);
+  cprintf("Enter your option(1-7):");
+  scanf("%d",&op3);
+  switch(op3)   //switch for different cases.
+  {
+  case 1:
+    cse_books(); //calling function for cse books.
+    down_buy_books();
+    back_menus();
+    break;
+  case 2:
+    ece_books();  //calling function for ece books.
+    down_buy_books();
+    back_menus();
+    break;
+  case 3:
+    civil_books();  //calling function for civil books.
+    down_buy_books();
+    back_menus();
+    break;
+  case 4:
+    mech_books();   //calling function for mech books.
+    down_buy_books();
+    back_menus();
+    break;
+  case 5:         //calling function for eee books.
+    eee_books();
+    down_buy_books();
+    back_menus();
+    break;
+  case 6:
+    clrscr();
+    title();
+    all_ebooks();
+    break;
+  case 0:
+    textcolor(LIGHTMAGENTA);
+    cprintf("Thank you for visiting eBOOK SHOPPING.");
+    delay(3000);
+    exit(0);  //To exit the switch.
+  default:
+    textcolor(LIGHTCYAN);
+    cprintf("Invalid option.                                                                 ");
+    cprintf("Enter a number which branch books you want.                                     ");
+    goto label9;
+ }
+}
+
+
+
+
+
+
+void book_num()
+{
+   label10:
+   textcolor(GREEN);
+   cprintf("Enter book number(1-10):");
+   scanf("%d",&booknum);
+   if(booknum>=10)   //Book number is <=10 then goto next staements.
+   {
+    printf("Enter a valid book number.\n");
+    goto label10;
+   }
+}
+
+
+
+
+
+
+void down_buy_books()     // Called function for Down & Buy Books.
+{
+  textcolor(RED);
+  cprintf("1.DOWNLOAD SAMPLE BOOK                                                          ");
+  cprintf("2.DOWNLOAD FULL BOOK  	                                                         ");
+  cprintf("3.BUY A BOOK                                                                    ");
+  cprintf("4.SUGGEST A BOOK                                                                ");
+  cprintf("5.GO TO BACK MENU                                                               ");
+  cprintf("0.EXIT                                                                          ");
+  label11:
+  textcolor(YELLOW);
+  cprintf("Enter your option(1-6):");
+  scanf("%d",&op4);
+  i++;
+  switch(op4)   //switch for different cases.
+  {
+   case 1:
+     book_num();
+     clrscr();
+     title();
+     down_bar();
+     if(op2==1)
+     {
+     textcolor(LIGHTGREEN);
+     cprintf("The download sample book is available in the below path:                        ");
+     textcolor(LIGHTBLUE);
+     cprintf("C:/Users/Ramanjaneyulu/Downloads/Search Books                                   ");
+     }
+     else
+     {
+     if(op2==3)
+     {
+     textcolor(LIGHTGREEN);
+     cprintf("The downloaded book is available in the below path:                             ");
+     textcolor(LIGHTBLUE);
+     cprintf("C:/Users/Ramanjaneyulu/Downloads/Sample Book/Business Books                     ");
+     }
+     else
+     {
+     if(op2==4)
+     {
+     textcolor(LIGHTGREEN);
+     cprintf("The downloaded book is available in the below path:                             ");
+     textcolor(LIGHTBLUE);
+     cprintf("C:/Users/Ramanjaneyulu/Downloads/Sample Book/Children Books                     ");
+     }
+     else
+     {
+     if(op3==1)
+     {
+     textcolor(LIGHTGREEN);
+     cprintf("The downloaded book is available in the below path:                             ");
+     textcolor(LIGHTBLUE);
+     cprintf("C:/Users/Ramanjaneyulu/Downloads/Sample Book/Cse Books                          ");
+     }
+     else
+     {
+     if(op3==2)
+     {
+     textcolor(LIGHTGREEN);
+     cprintf("The downloaded book is available in the below path:                             ");
+     textcolor(LIGHTBLUE);
+     cprintf("C:/Users/Ramanjaneyulu/Downloads/Sample Book/Ece Books                          ");
+     }
+     else
+     {
+     if(op3==3)
+     {
+     textcolor(LIGHTGREEN);
+     cprintf("The downloaded book is available in the below path:                             ");
+     textcolor(LIGHTBLUE);
+     cprintf("C:/Users/Ramanjaneyulu/Downloads/Sample Book/Civil Books                        ");
+     }
+     else
+     {
+     if(op3==4)
+     {
+     textcolor(LIGHTGREEN);
+     cprintf("The downloaded book is available in the below path:                             ");
+     textcolor(LIGHTBLUE);
+     cprintf("C:/Users/Ramanjaneyulu/Downloads/Sample Book/Mech Books                         ");
+     }
+     else
+     {
+     if(op3==5)
+     {
+     textcolor(LIGHTGREEN);
+     cprintf("The downloaded book is available in the below path:                             ");
+     textcolor(LIGHTBLUE);
+     cprintf("C:/Users/Ramanjaneyulu/Downloads/Sample Book/Eee Books                          ");
+     }
+     }
+     }
+     }
+     }
+     }
+     }
+     }
+     break;
+  case 2:
+     book_num();
+     clrscr();
+     title();
+     atm_cards();
+     clrscr();
+     title();
+     down_bar();
+     if(op2==1)
+     {
+     textcolor(LIGHTGREEN);
+     cprintf("The download sample book is available in the below path:                        ");
+     textcolor(LIGHTBLUE);
+     cprintf("C:/Users/Ramanjaneyulu/Downloads/Search Books                                   ");
+     }
+     else
+     {
+     if(op2==3)
+     {
+     textcolor(LIGHTGREEN);
+     cprintf("The downloaded book is available in the below path:                             ");
+     textcolor(LIGHTBLUE);
+     cprintf("C:/Users/Ramanjaneyulu/Downloads/Full Book/Business Books                       ");
+     }
+     else
+     {
+     if(op2==4)
+     {
+     textcolor(LIGHTGREEN);
+     cprintf("The downloaded book is available in the below path:                             ");
+     textcolor(LIGHTBLUE);
+     cprintf("C:/Users/Ramanjaneyulu/Downloads/Full Book/Children Books                       ");
+     }
+     else
+     {
+     if(op3==1)
+     {
+     textcolor(LIGHTGREEN);
+     cprintf("The downloaded book is available in the below path:                             ");
+     textcolor(LIGHTBLUE);
+     cprintf("C:/Users/Ramanjaneyulu/Downloads/Full Book/Cse Books                            ");
+     }
+     else
+     {
+     if(op3==2)
+     {
+     textcolor(LIGHTGREEN);
+     cprintf("The downloaded book is available in the below path:                             ");
+     textcolor(LIGHTBLUE);
+     cprintf("C:/Users/Ramanjaneyulu/Downloads/Full Book/Ece Books                            ");
+     }
+     else
+     {
+     if(op3==3)
+     {
+     textcolor(LIGHTGREEN);
+     cprintf("The downloaded book is available in the below path:                             ");
+     textcolor(LIGHTBLUE);
+     cprintf("C:/Users/Ramanjaneyulu/Downloads/Full Book/Civil Books                          ");
+     }
+     else
+     {
+     if(op3==4)
+     {
+     textcolor(LIGHTGREEN);
+     cprintf("The downloaded book is available in the below path:                             ");
+     textcolor(LIGHTBLUE);
+     cprintf("C:/Users/Ramanjaneyulu/Downloads/Full Book/Mech Books                           ");
+     }
+     else
+     {
+     if(op3==5)
+     {
+     textcolor(LIGHTGREEN);
+     cprintf("The downloaded book is available in the below path:                             ");
+     textcolor(LIGHTBLUE);
+     cprintf("C:/Users/Ramanjaneyulu/Downloads/Full Book/Eee Books                            ");
+     }
+     }
+     }
+     }
+     }
+     }
+     }
+     }
+     break;
+  case 3:
+     book_num();
+     clrscr();
+     title();
+     payment();
+     break;
+     case 4:
+     clrscr();
+     title();
+     suggest_books();
+     back_menus();
+     break;
+     case 5:
+     clrscr();
+     title();
+     if(op2==1 || op2==3 || op2==4)
+     {
+     all_ebooks();
+     }
+     else
+     {
+     if(op3==1 || op3==2 || op3==3 || op3==4 || op3==5)
+     {
+     engineering_books();
+     }
+     }
+     break;
+  case 0:
+     textcolor(LIGHTMAGENTA);
+     cprintf("Thank you for visiting eBOOK SHOPPING.");
+     delay(3000);
+     exit(0);  //To exit the switch.
+  default:
+     textcolor(LIGHTCYAN);
+     cprintf("Invalid option.                                                                 ");
+     cprintf("Enter correct option.                                                           ");
+     goto label11;
+     }
+}
+
+
+
+
+
+void payment()      // Called function for Payment.
+{
+  textcolor(RED);
+  cprintf("1.CASH ON DELIVERY                                                              ");
+  cprintf("2.ONLINE PAYMENT                                                                ");
+  cprintf("3.GO TO BACK MENU                                                               ");
+  cprintf("0.EXIT                                                                          ");
+  label12:
+  textcolor(YELLOW);
+  cprintf("Enter your option(1-4):");
+  scanf("%d",&op13);
+  switch(op13)
+  {
+   case 1:
+     clrscr();
+     title();
+     buy_book();
+     break;
+   case 2:
+     textcolor(BROWN);
+     clrscr();
+     title();
+     atm_cards();
+     clrscr();    // Clear the out-put screen.
+     title();
+     buy_book();
+     break;
+   case 3:
+     clrscr();
+     title();
+     all_ebooks();     // Calling function for all ebooks.
+     break;
+  case 0:
+    textcolor(LIGHTMAGENTA);
+    cprintf("Thank you for visiting eBOOK SHOPPING.");
+    delay(3000);
+    exit(0);  // To exit the switch.
+  default:
+    textcolor(LIGHTCYAN);
+    cprintf("Invalid option.                                                                 ");
+    goto label12;
+ }
+}
+
+
+
+
+
+void atm_cards()  // Called function for ATM Cards.
+{
+  clrscr();
+  title();
+  textcolor(RED);
+  cprintf("1.CREDIT CARD                                                                   ");
+  cprintf("2.DEBIT CARD                                                                    ");
+  cprintf("3.GO TO BACK MENU                                                               ");
+  cprintf("0.EXIT                                                                          ");
+  label13:
+  textcolor(YELLOW);
+  cprintf("Enter your option((1-4):");
+  scanf("%d",&op12);
+  switch(op12)
+  {
+ case 1:
+   clrscr();
+   title();
+   card_num();
+   break;
+   case 2:
+   clrscr();
+   title();
+   card_num();
+   break;
+ case 3:
+   clrscr();
+   title();
+   all_ebooks();     // Calling function for all ebooks.
+   break;
+ case 0:
+   textcolor(LIGHTMAGENTA);
+   cprintf("Thank you for visiting eBOOK SHOPPING.");
+   delay(3000);
+   exit(0);
+ default:
+   textcolor(LIGHTCYAN);
+   cprintf("Invalid option                                                                  ");
+   cprintf("Enter correct option.                                                           ");
+   goto label13;
+ }
+}
+
+
+
+
+
+void card_num()  // Called function for Card Num.
+{
+  label14:
+  textcolor(LIGHTMAGENTA);
+  cprintf("Enter your 16 digit card number:");
+  scanf("%s",&cardnum);
+  for(i=0;cardnum[i]!='\0';i++)
+  {
+   if(cardnum[i]>='0' && cardnum[i]<='9')
+   {     // To check given string is digits or not.
+   }
+   else
+   {
+   textcolor(LIGHTCYAN);
+   cprintf("The card number contains only digits.                                           ");
+   goto label14;
+   }
+  }
+   if(i==16)  // To check Card number contains 16 digits or not.
+   {
+   }
+   else
+   {
+   textcolor(LIGHTCYAN);
+   cprintf("Enter only 16 digit card number.                                                ");
+   goto label14;
+   }
+   label15:
+   textcolor(LIGHTMAGENTA);
+   cprintf("Enter your name on card without any spaces:");
+   scanf("%s",&name1);
+   for(i=0;name1[i]!='\0';i++)
+   {
+   if((name1[i]>='a' && name1[i]<='z') ||  (name1[i]>='A' && name1[i]<='Z'))
+   {     // To check given string collection of alphaberts or not.
+   }
+   else
+   {
+   textcolor(LIGHTCYAN);
+   cprintf("The name contains only alphabets.                                               ");
+   goto label15;
+   }
+   }
+   label16:
+   textcolor(LIGHTMAGENTA);
+   cprintf("Enter card valid year and month(MMYYYY):");
+   scanf("%s",&month_year);
+   for(i=0;month_year[i]!='\0';i++)
+   {
+   if(month_year[i]>='0' && month_year[i]<='9')
+   {   // To check given string is digits or not.
+   }
+   else
+   {
+   textcolor(LIGHTCYAN);
+   cprintf("Enter digits only.                                                              ");
+   goto label16;
+   }
+   }
+   if(i==6)  // To check card validity contains 6 digits or not.
+   {
+   }
+   else
+   {
+   textcolor(LIGHTCYAN);
+   cprintf("Enter only 6 digits like 122022.                                                ");
+   goto label16;
+   }
+   label17:
+   textcolor(LIGHTMAGENTA);
+   cprintf("Enter last three digits of cvv number:");
+   scanf("%s",&cvv);
+   for(i=0;cvv[i]!='\0';i++)
+   {
+   if(cvv[i]>='0' && cvv[i]<='9')  // To check given string is digits or not.
+   {
+   }
+   else
+   {
+   textcolor(LIGHTCYAN);
+   cprintf("Enter digits only.                                                              ");
+   goto label17;
+   }
+   }
+   if(i==3)
+   {
+   }
+   else
+   {
+   textcolor(LIGHTCYAN);
+   cprintf("Enter only 3 digits like 022.                                                   ");
+   goto label17;
+   }
+   textcolor(LIGHTRED);
+   cprintf("LOADING......PLZ WAIT                                                         ");
+   for(i=0;i<27;i++)
+   {
+   textcolor(LIGHTRED);
+   cprintf("%3c",222);
+   delay(120);
+   }
+   textcolor(YELLOW);
+   cprintf(" Your transaction  is complete.                                                  ");
+   textcolor(LIGHTCYAN);
+   cprintf("PLZ..........WAIT                                                               ");
+   delay(2000);
+}
+
+
+
+
+
+void buy_book()   // called function or for download & buy a book.
+{
+  label18:
+  textcolor(LIGHTMAGENTA);
+  cprintf("Enter your name without any spaces:");
+  scanf("%s",&name);
+  for(i=0;name[i]!='\0';i++)
+  {
+  if((name[i]>='a' && name[i]<='z') ||  (name[i]>='A' && name[i]<='Z'))
+  {     // To check given string collection of alphaberts or not.
+  }
+  else
+  {
+  textcolor(LIGHTCYAN);
+  cprintf("The name contains only alphabets.                                               ");
+  goto label18;
+  }
+  }
+  label19:
+  textcolor(LIGHTMAGENTA);
+  cprintf("Enter your 10 digit phone number:");
+  scanf("%s",&phnum);
+  for(i=0;phnum[i]!='\0';i++)
+  {
+  if(phnum[i]>='0' && phnum[i]<='9')  // To check given string is digits or not.
+  {
+  }
+  else
+  {
+  textcolor(LIGHTCYAN);
+  cprintf("The phone number contains only digits.                                          ");
+  goto label19;
+  }
+  }
+  if(i==10)  // To check phone number contains 10 digits or not.
+  {
+  }
+  else
+  {
+  textcolor(LIGHTCYAN);
+  cprintf("Enter only 10 digit phone number.                                               ");
+  goto label19;
+  }
+  textcolor(LIGHTMAGENTA);
+  cprintf("Enter your Address without any spaces:");
+  scanf("%s",&addrs);
+  textcolor(GREEN);
+  cprintf("LOADING................PLZ  WAIT                                                ");
+  for(i=0;i<20;i++)
+  {
+  textcolor(LIGHTBLUE);
+  cprintf("%4c",221);
+  delay(200);
+  }
+  textcolor(BROWN);
+  cprintf("Your order is successfully placed.                                              ");
+  cprintf("With in three to four days the book is delivered.                               ");
+}
+
+
+
+
+
+void down_bar()    // Called function for Download Bar.
+{
+  textcolor(LIGHTMAGENTA);
+  cprintf("Book is Downloading...........                                                  ");
+  for(i=0;i<80;i++)
+  {
+  textcolor(LIGHTBLUE);
+  cprintf("%c",220);
+  delay(120);
+  }
+  textcolor(LIGHTMAGENTA);
+  printf("Download is complete.                                                           ");
+}
+
+
+
+void suggest_books()  // Called function for Suggest books.
+{
+  label20:
+  textcolor(LIGHTMAGENTA);
+  cprintf("Enter suggest book name without any spaces:");
+  scanf("%s",&suggest_book);
+  for(i=0;suggest_book[i]!='\0';i++)
+  {
+  if((suggest_book[i]>='a' && suggest_book[i]<='z') ||  (suggest_book[i]>='A' && suggest_book[i]<='Z'))
+  {     // To check given string collection of alphaberts or not.
+  textcolor(BROWN);
+  cprintf("Thank you for suggesting.                                                       ");
+  cprintf("I will try to add this book with in 24 Hours.                                   ");
+  break;
+  }
+  else
+  {
+  textcolor(LIGHTCYAN);
+  cprintf("The book name contains only alphabets.                                          ");
+  goto label20;
+  }
+ }
+}
+
+
+
+
+void back_menus()   // Called function for Back menus.
+{
+  for(j=0;j<=10;j++) // Repeat this function upto condition fails.
+  {
+  textcolor(RED);
+  cprintf("1.GO TO BACK MENU                                                               ");
+  cprintf("2.GO TO MAIN MENU                                                               ");
+  cprintf("0.EXIT.                                                                         ");
+  j++;
+  label21:
+  textcolor(YELLOW);
+  cprintf("Enter your option(1-3):");
+  scanf("%d",&op9);
+  switch(op9)
+  {
+  case 1:
+    clrscr();
+    title();
+    if(op2==3)
+    {
+    business_books();
+    down_buy_books();
+    }
+    else
+    {
+    if(op2==4)
+    {
+    children_books();
+    down_buy_books();
+    }
+    else
+    {
+    if(op3==1)
+    {
+    cse_books();
+    down_buy_books();
+    }
+    else
+    {
+    if(op3==2)
+    {
+    ece_books();
+    down_buy_books();
+    }
+    else
+    {
+    if(op3==3)
+    {
+    civil_books();
+    down_buy_books();
+    }
+    else
+    {
+    if(op3==4)
+    {
+    mech_books();
+    down_buy_books();
+    }
+    else
+    {
+    if(op3==5)
+    {
+    eee_books();
+    down_buy_books();
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    break;
+ case 2:
+   clrscr();
+   title();
+   if(op2==3 || op2==4)
+   {
+   all_ebooks();
+   }
+   else
+   {
+   if(op3==1 || op3==2 || op3==3 || op3==4 || op3==5)
+   {
+   engineering_books();
+   }
+   }
+   break;
+ case 0:
+   textcolor(LIGHTMAGENTA);
+   cprintf("Thank you for visiting eBOOK SHOPPING.");
+   delay(3000);
+   exit(0);   // To exit the switch.
+ default:
+   textcolor(LIGHTCYAN);
+   cprintf("Invalid  option.                                                                ");
+   cprintf("Enter correct option.                                                           ");
+   goto label21;
+  }
+ }
+}
+
+
+
+
+
+void cse_books()   // Called function for some cse books.
+{
+ clrscr();
+ title();
+ textcolor(MAGENTA);
+ cprintf("->COMPUTER SCIENCE & ENGINEERING BOOKS ARE:");
+ printf("\n|=======================================================================|       ");
+ textcolor(LIGHTGREEN);
+ cprintf("|BOOK NAME:                     AUTHOR NAME:                    COST:   |");
+ printf("\n|=======================================================================|       ");
+ printf("|1.C Programming         \tE.Balagur Swamy             \t350     |");
+ printf("\n|2.OOP'S Through C++     \tE.Balaguru Swamy            \t335     |");
+ printf("\n|3.R For Every One       \tLnder,Pearson               \t500     |");
+ printf("\n|4.Python Programming    \tVamsi kurama,pearson        \t300     |");
+ printf("\n|5.Data Structures       \tMark Allen Weiss            \t400     |");
+ printf("\n|6.Java programming      \tE.Balaguru Swamy            \t350     |");
+ printf("\n|7.Software Engineering  \tRajib Mall                  \t435     |");
+ printf("\n|8.Computer organization \tCarl Hamacher               \t500     |");
+ printf("\n|9.Web Technologies      \tUttam K Roy                 \t650     |");
+ printf("\n|10.Computer Networks    \tA.Forouzan,Firouz Mosharrf  \t600     |");
+ printf("\n|=======================================================================|\n");
+}
+
+
+
+
+void ece_books() // Called function for some ece books.
+{
+ clrscr();
+ title();
+ textcolor(MAGENTA);
+ cprintf("->ELECTRONICS & COMMUNICATION ENGINEERING BOOKS ARE:");
+ printf("\n|=======================================================================|       ");
+ textcolor(LIGHTGREEN);
+ cprintf("|BOOK NAME:                  AUTHOR NAME:              COST:            |");
+ printf("\n|=======================================================================|       ");
+ printf("|1.Signals & Systems       \tB.P.Lahi                \t350     |");
+ printf("\n|2.Network Analysis        \tK.Sathya Prasad         \t335     |");
+ printf("\n|3.Circuit Analysis        \tJ.Millman               \t500     |");
+ printf("\n|4.Control Systems          \tNagarath & Gopal        \t300     |");
+ printf("\n|5.Analog Communications   \tB.P.Lathi               \t400     |");
+ printf("\n|6.Management Science      \tVijaya Kumar            \t350     |");
+ printf("\n|7.Linear IC Applications  \tRoy choudhury           \t435     |");
+ printf("\n|8.Computer organization   \tCarl Hamacher           \t500     |");
+ printf("\n|9.Digital IC Applications \tJ.Bhasker               \t650     |");
+ printf("\n|10.Digital Communications \tSimon Haykin,John Wiley \t600     |");
+ printf("\n|=======================================================================|\n");
+}
+
+
+
+
+void civil_books() // Called function for some civil books.
+{
+ clrscr();
+ title();
+ textcolor(MAGENTA);
+ cprintf("->CIVIL ENGINEERING BOOKS ARE:");
+ printf("\n|===============================================================|               ");
+ textcolor(LIGHTGREEN);
+ printf("|BOOK NAME:                     AUTHOR NAME:             COST:  |");
+ printf("\n|===============================================================|               ");
+ printf("|1.Probability & Statistics   \tJay Ldevore       \t350     |");
+ printf("\n|2.Strength of Materials-1     \tR.K.Rajput         \t335     |");
+ printf("\n|3.Surveying                   \tAshok Kumar Jain   \t500     |");
+ printf("\n|4.Fluid Mechanics             \tP.N.Modi           \t300     |");
+ printf("\n|5.Strength of Materials-2     \tR.K.Rajput         \t400     |");
+ printf("\n|6.Concrete Technology         \tM.S.Shetty         \t350     |");
+ printf("\n|7.Structural Analysis-1       \tS.K.Khanna         \t435     |");
+ printf("\n|8.Management Science          \tN.Appa Rao         \t500     |");
+ printf("\n|9.Engineering Geology         \tVanitha Agarwal    \t650     |");
+ printf("\n|10.Structural Analysis-2      \tS.K.Khanna         \t600     |");
+ printf("\n|===============================================================|\n");
+}
+
+
+
+
+void mech_books()  //Called function for some mech books.
+{
+ clrscr();
+ title();
+ textcolor(MAGENTA);
+ cprintf("->MECHANICAL ENGINEERING BOOKS ARE:");
+ printf("\n|===============================================================|               ");
+ textcolor(LIGHTGREEN);
+ cprintf("|BOOK NAME:                    AUTHOR NAME:    COST:            |");
+ printf("\n|===============================================================|               ");
+ printf("|1.Mechanics Of Solids         \tGH Ryder        \t350     |");
+ printf("\n|2.Thermodynamics              \tPK Nag          \t335     |");
+ printf("\n|3.Thermal Eng-1               \tV.Ganesan       \t500     |");
+ printf("\n|4.Production Technology       \tA.K.Malik       \t300     |");
+ printf("\n|5.Machine Drawing             \tV.V.S.Sastry    \t400     |");
+ printf("\n|6.Dynamics Of Machinary       \tJS Rao          \t350     |");
+ printf("\n|7.Design Of Machine Memb's-1  \tV.Bandari       \t435     |");
+ printf("\n|8.Design Of Machine Memb's-2  \tV.Bandari	   \t500     |");
+ printf("\n|9.Operations Research         \tHamdy A Taha    \t650     |");
+ printf("\n|10.Theramal Engineering-2     \tR.Yadav         \t600     |");
+ printf("\n|===============================================================|\n");
+}
+
+
+
+
+void eee_books()   // Called function for some eee books.
+{
+ clrscr();
+ title();
+ textcolor(MAGENTA);
+ cprintf("->ELECTRICAL & ELECTRONICS ENGINEERING BOOKS ARE:");
+ printf("\n|===============================================================|               ");
+ textcolor(LIGHTGREEN);
+ cprintf("|BOOK NAME:                    AUTHOR NAME:            COST:    |");
+ printf("\n|===============================================================|               ");
+ printf("|1.Signals & Systems         \tB.P.Lahi              \t350     |");
+ printf("\n|2.Electro Magnetic Fields   \tWilliam H.Hayt        \t330     |");
+ printf("\n|3.Circuit Analysis          \tJ.Millman             \t500     |");
+ printf("\n|4.Cntrol Systems            \tM.Gopal               \t300     |");
+ printf("\n|5.Electrical Measurements   \tE.W.Golding           \t400     |");
+ printf("\n|6.Management Science        \tVijaya Kumar          \t350     |");
+ printf("\n|7.Linear IC Applications    \tRoy choudhury         \t435     |");
+ printf("\n|8.Management Science        \tN.Appa Rao            \t500     |");
+ printf("\n|9.Digital IC Applications   \tJ.Bhasker             \t650     |");
+ printf("\n|10.Power Systems            \tP.V.Gupta             \t600     |");
+ printf("\n|===============================================================|\n");
+}
+
+
+
+
+void business_books()   // Called function for some eee books.
+{
+ clrscr();
+ title();
+ textcolor(MAGENTA);
+ cprintf("->SOME BUSINESS PURPOSE BOOKS ARE:");
+ printf("\n|=======================================================================|       ");
+ textcolor(LIGHTGREEN);
+ cprintf("|BOOK NAME:                    AUTHOR NAME:                   COST:     |");
+ printf("\n|=======================================================================|       ");
+ printf("|1.Zero t0 One                 \tPeter Thiel and Blake Masters  \t315     |");
+ printf("\n|2.Impatient Optimist        \tEdited by Rogak,Lisa           \t76      |");
+ printf("\n|3.Rich Dad Poor Dad         \tRobert T.Kiyosak               \t300     |");
+ printf("\n|4.The Intelligent Investor  \tBenjamin Graham                \t359     |");
+ printf("\n|5.Business Adventures       \tJohn Brooks                    \t320     |");
+ printf("\n|6.Deep Work                 \tCal Newport                    \t363     |");
+ printf("\n|7.How Life Works            \tAnderew Matthews               \t307     |");
+ printf("\n|8.Indian Greatest CEO's     \tSuhel Seth                     \t349     |");
+ printf("\n|9.Promote Yourself          \tDan Schawbel                   \t267     |");
+ printf("\n|10.Your Right First Job     \tT.Muralidharan                 \t135     |");
+ printf("\n|=======================================================================|\n");
+}
+
+
+
+
+void children_books()   // Called function for some eee books.
+{
+ clrscr();
+ title();
+ textcolor(MAGENTA);
+ cprintf("->SOME CHILDREN OR KIDS BOOKS ARE:");
+ printf("\n|===========================================================|                   ");
+ textcolor(LIGHTGREEN);
+ cprintf("|BOOK NAME:                    AUTHOR NAME:          COST:  |");
+ printf("\n|===========================================================|                   ");
+ printf("|1.The Book Thief             \tMarkus Zusak        \t253 |");
+ printf("\n|2.Pink Pages               \tSarah Delmege       \t115 |");
+ printf("\n|3.Kingdom Of Fantasy       \tHardcover           \t440 |");
+ printf("\n|4.Great Stories For Kids   \tRuskin Bond         \t156 |");
+ printf("\n|5.Amazing Voyage           \tHardcover	    \t192 |");
+ printf("\n|6.Looking For Alaska       \tJohn Green          \t259 |");
+ printf("\n|7.Harry Potter             \tJ.K.Rowling         \t344 |");
+ printf("\n|8.Cloud Castle             \tThea Stilton        \t343 |");
+ printf("\n|9.All The Bright Places    \tJennifer Niven      \t236 |");
+ printf("\n|10.Stories of Birbal       \tHardcover,Anant Pai \t260 |");
+ printf("\n|===========================================================|\n");
+}
+
+
+
+
+
+
